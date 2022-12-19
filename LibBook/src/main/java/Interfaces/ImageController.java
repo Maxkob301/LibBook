@@ -6,13 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public interface ImageController {
-    default Image getImage(String resultImageName){
+    default Image getImage(String resultImageName) throws FileNotFoundException {
         Image v;
-        try {
             v = new Image(new FileInputStream( "C:\\LibBook\\src\\main\\java\\ImagesBooks" + "\\" + resultImageName + ".jpeg"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
         return v;
     }
 }

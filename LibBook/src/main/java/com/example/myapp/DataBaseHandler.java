@@ -1,6 +1,8 @@
 package com.example.myapp;
+
 import javafx.stage.FileChooser;
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -25,15 +27,15 @@ public class DataBaseHandler extends Configs {
     }
 
     public String getImageFromTable(String nameImage) throws SQLException, ClassNotFoundException {
-        ResultSet resultSet;
-        String name = null;
-        Statement statement = getDbConnection().createStatement();
-        String select = "SELECT * FROM booksname WHERE Books " + "= " + "'" + nameImage + "'";
-        resultSet = statement.executeQuery(select);
-        while(resultSet.next()){
-            name = resultSet.getString("Books");
-        }
-        return name;
+            ResultSet resultSet;
+            String name = null;
+            Statement statement = getDbConnection().createStatement();
+            String select = "SELECT * FROM booksname WHERE Books " + "= " + "'" + nameImage + "'";
+            resultSet = statement.executeQuery(select);
+            while (resultSet.next()) {
+                name = resultSet.getString("Books");
+            }
+            return name;
     }
     //Добавляем файл и его название в базу данных images
     public void CreateImageName(String nameImage){
@@ -44,7 +46,7 @@ public class DataBaseHandler extends Configs {
         try {
             filePath = chooser.showOpenDialog(null);
             if(filePath == null){
-                System.out.println("");
+                System.out.println();
             }else {
                 //Создание соединения
                 Statement statement = getDbConnection().createStatement();
@@ -88,6 +90,5 @@ public class DataBaseHandler extends Configs {
                 throw new RuntimeException(e);
             }
         }
-    }
+    }}
 
-}
